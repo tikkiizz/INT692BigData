@@ -34,15 +34,16 @@ def run():
         df = df[df['wd'].notnull()]
         df = df[df['WSPM'].notnull()]
 
-        y = pd.get_dummies(df['wd'], prefix='wd')
-        # df = df.drop(['wd'], axis=1)
-        df = pd.concat([df, y], axis=1)
-
         if i == 0:
             df.to_csv('C:/Users/user/Downloads/PRSA2017/PRSA/PRSA.csv', columns=df.columns, index=False)
         else:
             df.to_csv('C:/Users/user/Downloads/PRSA2017/PRSA/PRSA.csv', header=False, index=False, mode='a')
 
+    df = pd.read_csv('C:/Users/user/Downloads/PRSA2017/PRSA/PRSA.csv')
+    y = pd.get_dummies(df['wd'], prefix='wd')
+    # df = df.drop(['wd'], axis=1)
+    df = pd.concat([df, y], axis=1)
+    df.to_csv('C:/Users/user/Downloads/PRSA2017/PRSA/PRSA.csv', columns=df.columns, index=False)
 
 if __name__ == '__main__':
     run()
